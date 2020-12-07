@@ -61,7 +61,7 @@ RSpec.describe 'Task', type: :system do
     let(:project){ create(:project) }
     let(:task){ create(:task, project_id: project.id) }
     context '正常系' do
-      it 'Taskを編集した場合、一覧画面で編集後の内容が表示されること', focus:true do
+      it 'Taskを編集した場合、一覧画面で編集後の内容が表示されること' do
         # FIXED: テストが失敗するので修正してください
         project = FactoryBot.create(:project)
         task = FactoryBot.create(:task, project_id: project.id)
@@ -98,11 +98,11 @@ RSpec.describe 'Task', type: :system do
   end
 
   describe 'Task削除' do
+    let(:project){ create(:project) }
+    let!(:task){ create(:task, project_id: project.id) }
     context '正常系' do
       # FIXME: テストが失敗するので修正してください
-      xit 'Taskが削除されること' do
-        project = FactoryBot.create(:project)
-        task = FactoryBot.create(:task, project_id: project.id)
+      it 'Taskが削除されること' do
         visit project_tasks_path(project)
         click_link 'Destroy'
         page.driver.browser.switch_to.alert.accept
